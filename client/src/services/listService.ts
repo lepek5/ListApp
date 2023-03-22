@@ -1,10 +1,9 @@
 import axios from "axios";
 import { ListType } from "../types";
-
-const baseUrl = `http://192.168.43.113:4321/`;
+import { API_BASE_URL } from "../utils/config";
 const createList = async (args: ListType) => {
   try {
-    const list = await axios.post(baseUrl, args);
+    const list = await axios.post(API_BASE_URL, args);
     return list.data;
   } catch (error: unknown) {
     return error instanceof Error ? error.message : `Error creating new list`;
@@ -12,7 +11,7 @@ const createList = async (args: ListType) => {
 }
 const getListById = async (args: string) => {
   try {
-    const list = await axios.get(`${baseUrl}${args}`);
+    const list = await axios.get(`${API_BASE_URL}/${args}`);
     return list.data;
   } catch (error: unknown) {
     return error instanceof Error ? error.message : `Error fetching list id ${args}`;
@@ -20,7 +19,7 @@ const getListById = async (args: string) => {
 };
 const updateListById = async (args: ListType) => {
   try {
-    const list = await axios.put(baseUrl+args.listId, args);
+    const list = await axios.put(API_BASE_URL+"/"+args.listId, args);
     return list.data;
   } catch (error: unknown) {
     return error instanceof Error ? error.message : `Error updating list id ${args.listId}`;

@@ -2,7 +2,7 @@ import express from "express";
 const ListRouter = express.Router();
 import * as listController from "../controllers";
 
-ListRouter.put("/:id", async (req: any, res) => {
+ListRouter.put("/api/:id", async (req: any, res) => {
   try {
     const list = await listController.updateList(req.params.id, req.list);
     res.status(200).json(list);
@@ -10,7 +10,7 @@ ListRouter.put("/:id", async (req: any, res) => {
     res.status(400).json(error instanceof Error ? error.message : `Error fetching list id ${req.list.listId}`);
   }
 });
-ListRouter.get("/:id", async (req, res) => {
+ListRouter.get("/api/:id", async (req, res) => {
   try {
     const list = await listController.getListById(req.params.id);
     res.status(200).json(list);
@@ -18,7 +18,7 @@ ListRouter.get("/:id", async (req, res) => {
     res.status(400).json(error instanceof Error ? error.message : `Error fetching list id ${req.params.id}`);
   }
 });
-ListRouter.post("/", async (req: any, res) => {
+ListRouter.post("/api", async (req: any, res) => {
   try {
     const list = await listController.createList(req.list);
     res.status(200).json(list);

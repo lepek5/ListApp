@@ -58,3 +58,15 @@ body {
       transform: rotate(360deg);
   }
 }
+
+#popup {
+  visibility: hidden;
+  width: 350px;
+  background-color: aqua;
+  z-index: 1;
+  position: fixed;
+  padding: 15px;
+}
+#popup.visible {
+  visibility: visible;
+}

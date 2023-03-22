@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Navigate, redirect } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 import { v1 as uuid } from "uuid";
 import { createList } from "../services/listService";
@@ -20,10 +20,10 @@ const NewListPage = () => {
     createNew();
   }, []);
   if (list) {
-    return <Navigate to={"/"+id} />
+    return <Navigate to={`/${id}`} />
   }
   return (
-    <div>Creating a new list....</div>
+    <div role="figure" id="create-list">Creating a new list....</div>
   )
 }
 

@@ -1,9 +1,13 @@
+import { GoCheck } from "react-icons/go";
 import { TiDeleteOutline } from "react-icons/ti";
+import { GrUndo } from "react-icons/gr";
 import { ListItemType } from "../types";
 
 const ListItem = ({ item, removeItem, handleToggleCompleted }: { handleToggleCompleted: any, item: ListItemType, removeItem: any }) => {
-  const completed = "duration-300 transition shadow-md shadow-stone-200 rounded-lg px-3 py-2 text-stone-900 w-full bg-green-300 mb-2";
-  const nonCompleted = "duration-300 transition shadow-md shadow-stone-200 rounded-lg px-3 py-2 text-stone-900 w-full mb-2"
+  const style = {
+    textDecorationLine: item.completed ? "line-through" : "none",
+    textDecorationThickness: "3px"
+  }
   const handlePopUp = () => {
     const popup = document.getElementById("popup") as HTMLElement;
     if (popup) {
@@ -19,9 +23,10 @@ const ListItem = ({ item, removeItem, handleToggleCompleted }: { handleToggleCom
       <div id="popup">
         Do you want do delete the {item.text}?
       </div>
-      <div id={item._id} className="flex">
-        <div onClick={() => handleToggleCompleted(item._id)} className={item.completed ? completed : nonCompleted}>{item.text}</div>
+      <div id={item._id} className="list-item">
+        <div style={style} className="list-item-text">{item.text}</div>
         <div className="list-item-button-wrapper">
+          <span onClick={() => handleToggleCompleted(item._id)}>{item.completed ? <GrUndo size={50} /> : <GoCheck size={50} />}</span>
           <span onClick={() => {
             //handlePopUp();
             removeItem(item._id)

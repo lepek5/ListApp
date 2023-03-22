@@ -5,7 +5,6 @@ import NewListPage from "./pages/NewListPage";
 
 function App() {
   return (
-    <div id="lista">
       <Router basename="/">
         <Routes>
           <Route path="/" element={<Frontpage />} />
@@ -13,7 +12,6 @@ function App() {
           <Route path="/:id" element={<List />} />
         </Routes>
       </Router>
-    </div>
   );
 }
 
